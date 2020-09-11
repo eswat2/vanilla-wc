@@ -49,11 +49,15 @@
     </div>
   </body>
   <script>
+    document.querySelector("#x1").items = [1, 2, 3]
+    document.querySelector("#x2").items = "foobar"
+
     document
       .querySelector("#x1")
-      .addEventListener("onClick", (value) => console.log(value))
+      .addEventListener("onClick", (value) => console.log(value.detail))
+
     document
       .querySelector("#x2")
-      .addEventListener("onClick", (value) => console.log(value))
+      .addEventListener("onClick", (value) => console.log(value.detail))
   </script>
 </html>

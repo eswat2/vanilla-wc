@@ -32,12 +32,26 @@
       this.$icon.addEventListener("click", () => {
         this.dispatchEvent(
           new CustomEvent("onClick", {
-            detail: `onClick -- ${this.$label}`,
+            detail: {
+              action: "onClick",
+              label: this._label,
+              items: this._items,
+            },
           })
         )
       })
 
+      this._items = []
+
       console.log("constructed!")
+    }
+
+    set items(value) {
+      this._items = value
+    }
+
+    get items() {
+      return this._items
     }
 
     connectedCallback() {
@@ -58,7 +72,7 @@
 
     attributeChangedCallback(name, oldVal, newVal) {
       console.log(`Attribute: ${name} changed! -- "${newVal}"`)
-      this.$label = newVal
+      this._label = newVal
     }
   }
 
