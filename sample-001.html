@@ -15,24 +15,30 @@
         console.log("constructed!")
       }
 
-      static get observedAttributes() {
-        return ["my-attr"]
-      }
-
       connectedCallback() {
+        // Invoked when the custom element is first connected to the document's DOM.
         console.log("connected!")
       }
 
       disconnectedCallback() {
+        // Invoked when the custom element is disconnected from the document's DOM.
         console.log("disconnected!")
       }
 
-      attributeChangedCallback(name, oldVal, newVal) {
-        console.log(`Attribute: ${name} changed! -- "${newVal}"`)
+      adoptedCallback() {
+        // Invoked when the custom element is moved to a new document.
+        console.log("adopted!")
       }
 
-      adoptedCallback() {
-        console.log("adopted!")
+      static get observedAttributes() {
+        return ["my-attr"]
+      }
+
+      attributeChangedCallback(name, oldVal, newVal) {
+        // Invoked each time one of the custom element's attributes is added,
+        // removed, or changed. Which attributes to notice change for is
+        // specified in a static get observedAttributes method.
+        console.log(`Attribute: ${name} changed! -- "${newVal}"`)
       }
     }
 

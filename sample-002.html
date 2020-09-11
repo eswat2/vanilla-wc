@@ -49,10 +49,6 @@
         console.log("constructed!")
       }
 
-      static get observedAttributes() {
-        return ["my-attr"]
-      }
-
       connectedCallback() {
         console.log("connected!")
       }
@@ -61,12 +57,16 @@
         console.log("disconnected!")
       }
 
-      attributeChangedCallback(name, oldVal, newVal) {
-        console.log(`Attribute: ${name} changed! -- "${newVal}"`)
-      }
-
       adoptedCallback() {
         console.log("adopted!")
+      }
+
+      static get observedAttributes() {
+        return ["my-attr"]
+      }
+
+      attributeChangedCallback(name, oldVal, newVal) {
+        console.log(`Attribute: ${name} changed! -- "${newVal}"`)
       }
     }
 
