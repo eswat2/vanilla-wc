@@ -13,8 +13,8 @@
 
 - [CustomEvent()][ce-moz] - _moz://a_
 - [Web Components][wc-moz] - _moz://a_
-- [Handling data with Web Components][wc-data] - _medium_
-
+- [Handling data with Web Components][wc-data] - _Medium_
+- [The many ways to write an IIFE in JavaScript][iife] - _Go Make Things_
 
 [s0]: ./sample-000.html
 [s1]: ./sample-001.html
@@ -25,3 +25,4 @@
 [ce-moz]: https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent
 [wc-moz]: https://developer.mozilla.org/en-US/docs/Web/Web_Components
 [wc-data]: https://itnext.io/handling-data-with-web-components-9e7e4a452e6e
+[iife]: https://gomakethings.com/the-many-ways-to-write-an-immediately-invoked-function-expression-iife-in-javascript/
