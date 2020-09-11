@@ -1,6 +1,7 @@
 // --------------------------------------------------------[ MyElement ]
-const template = document.createElement("template")
-template.innerHTML = `
+;(function () {
+  const template = document.createElement("template")
+  template.innerHTML = `
       <style>
         :host {
           font-style: italic;
@@ -11,36 +12,37 @@ template.innerHTML = `
         <slot name="my-slot">My default text</slot>
       </div>
     `
-class MyElement extends HTMLElement {
-  constructor() {
-    // always call super() first
-    super()
+  class MyElement extends HTMLElement {
+    constructor() {
+      // always call super() first
+      super()
 
-    this._shadowRoot = this.attachShadow({ mode: "open" })
-    this._shadowRoot.appendChild(template.content.cloneNode(true))
+      this._shadowRoot = this.attachShadow({ mode: "open" })
+      this._shadowRoot.appendChild(template.content.cloneNode(true))
 
-    console.log("constructed!")
+      console.log("constructed!")
+    }
+
+    connectedCallback() {
+      console.log("connected!")
+    }
+
+    disconnectedCallback() {
+      console.log("disconnected!")
+    }
+
+    adoptedCallback() {
+      console.log("adopted!")
+    }
+
+    static get observedAttributes() {
+      return ["my-attr"]
+    }
+
+    attributeChangedCallback(name, oldVal, newVal) {
+      console.log(`Attribute: ${name} changed! -- "${newVal}"`)
+    }
   }
 
-  static get observedAttributes() {
-    return ["my-attr"]
-  }
-
-  connectedCallback() {
-    console.log("connected!")
-  }
-
-  disconnectedCallback() {
-    console.log("disconnected!")
-  }
-
-  attributeChangedCallback(name, oldVal, newVal) {
-    console.log(`Attribute: ${name} changed! -- "${newVal}"`)
-  }
-
-  adoptedCallback() {
-    console.log("adopted!")
-  }
-}
-
-window.customElements.define("my-element", MyElement)
+  window.customElements.define("my-element", MyElement)
+})()

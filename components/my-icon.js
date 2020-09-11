@@ -1,6 +1,7 @@
 // --------------------------------------------------------[ MyIcon ]
-const iconTemplate = document.createElement("template")
-iconTemplate.innerHTML = `
+;(function () {
+  const template = document.createElement("template")
+  template.innerHTML = `
       <style>
         :host {
           font-style: italic;
@@ -19,32 +20,47 @@ iconTemplate.innerHTML = `
         />
       </svg>
     `
-class MyIcon extends HTMLElement {
-  constructor() {
-    super()
+  class MyIcon extends HTMLElement {
+    constructor() {
+      super()
 
-    this._shadowRoot = this.attachShadow({ mode: "open" })
-    this._shadowRoot.appendChild(iconTemplate.content.cloneNode(true))
+      this._shadowRoot = this.attachShadow({ mode: "open" })
+      this._shadowRoot.appendChild(template.content.cloneNode(true))
 
-    this.$icon = this._shadowRoot.querySelector("svg")
+      this.$icon = this._shadowRoot.querySelector("svg")
 
-    this.$icon.addEventListener("click", () => {
-      this.dispatchEvent(
-        new CustomEvent("onClick", {
-          detail: `onClick -- ${this.$label}`,
-        })
-      )
-    })
+      this.$icon.addEventListener("click", () => {
+        this.dispatchEvent(
+          new CustomEvent("onClick", {
+            detail: `onClick -- ${this.$label}`,
+          })
+        )
+      })
+
+      console.log("constructed!")
+    }
+
+    connectedCallback() {
+      console.log("connected!")
+    }
+
+    disconnectedCallback() {
+      console.log("disconnected!")
+    }
+
+    adoptedCallback() {
+      console.log("adopted!")
+    }
+
+    static get observedAttributes() {
+      return ["my-attr"]
+    }
+
+    attributeChangedCallback(name, oldVal, newVal) {
+      console.log(`Attribute: ${name} changed! -- "${newVal}"`)
+      this.$label = newVal
+    }
   }
 
-  static get observedAttributes() {
-    return ["my-attr"]
-  }
-
-  attributeChangedCallback(name, oldVal, newVal) {
-    console.log(`Attribute: ${name} changed! -- "${newVal}"`)
-    this.$label = newVal
-  }
-}
-
-window.customElements.define("my-icon", MyIcon)
+  window.customElements.define("my-icon", MyIcon)
+})()
