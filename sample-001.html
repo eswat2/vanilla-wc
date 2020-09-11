@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>My Element - 001</title>
+  </head>
+  <body>
+    <my-element my-attr="foo">Hello</my-element>
+  </body>
+  <script>
+    class MyElement extends HTMLElement {
+      constructor() {
+        // always call super() first
+        super()
+        console.log("constructed!")
+      }
+
+      static get observedAttributes() {
+        return ["my-attr"]
+      }
+
+      connectedCallback() {
+        console.log("connected!")
+      }
+
+      disconnectedCallback() {
+        console.log("disconnected!")
+      }
+
+      attributeChangedCallback(name, oldVal, newVal) {
+        console.log(`Attribute: ${name} changed! -- "${newVal}"`)
+      }
+
+      adoptedCallback() {
+        console.log("adopted!")
+      }
+    }
+
+    window.customElements.define("my-element", MyElement)
+  </script>
+</html>

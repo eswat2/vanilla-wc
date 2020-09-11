@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>My Element - 002</title>
+    <!-- <style>
+      my-element::part(my-container) {
+        font-style: normal;
+      }
+      my-element#two {
+        font-style: italic;
+        font-weight: bold;
+        color: gray;
+      }
+      my-element#two::part(my-container) {
+        font-style: italic;
+      }
+    </style> -->
+  </head>
+  <body>
+    <my-element my-attr="foo">
+      <span>Hidden</span>
+    </my-element>
+    <my-element id="two" my-attr="bar">
+      <span slot="my-slot">Hello</span>
+    </my-element>
+  </body>
+  <script>
+    const template = document.createElement("template")
+    template.innerHTML = `
+      <style>
+        :host {
+          font-style: italic;
+          color: red;
+        }
+      </style>
+      <div part="my-container">
+        <slot name="my-slot">My default text</slot>
+      </div>
+    `
+    class MyElement extends HTMLElement {
+      constructor() {
+        // always call super() first
+        super()
+
+        this._shadowRoot = this.attachShadow({ mode: "open" })
+        this._shadowRoot.appendChild(template.content.cloneNode(true))
+
+        console.log("constructed!")
+      }
+
+      static get observedAttributes() {
+        return ["my-attr"]
+      }
+
+      connectedCallback() {
+        console.log("connected!")
+      }
+
+      disconnectedCallback() {
+        console.log("disconnected!")
+      }
+
+      attributeChangedCallback(name, oldVal, newVal) {
+        console.log(`Attribute: ${name} changed! -- "${newVal}"`)
+      }
+
+      adoptedCallback() {
+        console.log("adopted!")
+      }
+    }
+
+    window.customElements.define("my-element", MyElement)
+  </script>
+</html>

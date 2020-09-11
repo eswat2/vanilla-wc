@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>My Element - 005</title>
+    <style>
+      :root {
+        --clrs-navy: #001f3f;
+        --clrs-blue: #0074d9;
+        --clrs-aqua: #7fdbff;
+        --clrs-teal: #39cccc;
+        --clrs-olive: #3d9970;
+        --clrs-green: #2ecc40;
+        --clrs-lime: #01ff70;
+        --clrs-yellow: #ffdc00;
+        --clrs-orange: #ff851b;
+        --clrs-red: #ff4136;
+        --clrs-maroon: #85144b;
+        --clrs-fuchsia: #f012be;
+        --clrs-purple: #b10dc9;
+        --clrs-black: #111111;
+        --clrs-gray: #aaaaaa;
+        --clrs-silver: #dddddd;
+
+        --clrs-bada55: #bada55;
+        --clrs-slate: #708090;
+        --clrs-slate4: #4e5964;
+        --clrs-white: #ffffff;
+      }
+
+      my-icon::part(icon) {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+    <script type="text/javascript" src="./components/my-element.js"></script>
+    <script type="text/javascript" src="./components/my-icon.js"></script>
+  </head>
+  <body>
+    <my-element my-attr="foo">
+      <span>Hidden</span>
+    </my-element>
+    <my-element my-attr="bar">
+      <span slot="my-slot">Hello</span>
+    </my-element>
+    <div>
+      <my-icon id="x1" my-attr="icon-001"></my-icon>
+      <my-icon id="x2" my-attr="icon-002"></my-icon>
+    </div>
+  </body>
+  <script>
+    document
+      .querySelector("#x1")
+      .addEventListener("onClick", (value) => console.log(value))
+    document
+      .querySelector("#x2")
+      .addEventListener("onClick", (value) => console.log(value))
+  </script>
+</html>

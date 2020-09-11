@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>My Element - 000</title>
+  </head>
+  <body>
+    <my-element>Hello</my-element>
+    <!-- <my-element>Richard</my-element> -->
+  </body>
+  <script>
+    class MyElement extends HTMLElement {
+      constructor() {
+        // always call super() first
+        super()
+      }
+    }
+
+    window.customElements.define("my-element", MyElement)
+  </script>
+</html>
