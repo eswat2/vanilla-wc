@@ -16,6 +16,9 @@
 - [Handling data with Web Components][wc-data] - _Medium_
 - [The many ways to write an IIFE in JavaScript][iife] - _Go Make Things_
 
+
+
+
 [s0]: ./sample-000.html
 [s1]: ./sample-001.html
 [s2]: ./sample-002.html
