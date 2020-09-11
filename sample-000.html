@@ -9,6 +9,7 @@
       }
     </style>
   </head>
+
   <body>
     <my-element>Hello</my-element>
     <!-- <my-element>Richard</my-element> -->
@@ -17,10 +18,10 @@
     class MyElement extends HTMLElement {
       constructor() {
         // always call super() first
-        super()
+        super();
       }
     }
 
-    window.customElements.define("my-element", MyElement)
+    window.customElements.define("my-element", MyElement);
   </script>
 </html>

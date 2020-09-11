@@ -16,37 +16,37 @@
     class MyElement extends HTMLElement {
       constructor() {
         // always call super() first
-        super()
-        console.log("constructed!")
+        super();
+        console.log("constructed!");
       }
 
       connectedCallback() {
         // Invoked when the custom element is first connected to the document's DOM.
-        console.log("connected!")
+        console.log("connected!");
       }
 
       disconnectedCallback() {
         // Invoked when the custom element is disconnected from the document's DOM.
-        console.log("disconnected!")
+        console.log("disconnected!");
       }
 
       adoptedCallback() {
         // Invoked when the custom element is moved to a new document.
-        console.log("adopted!")
+        console.log("adopted!");
       }
 
       static get observedAttributes() {
-        return ["my-attr"]
+        return ["my-attr"];
       }
 
       attributeChangedCallback(name, oldVal, newVal) {
         // Invoked each time one of the custom element's attributes is added,
         // removed, or changed. Which attributes to notice change for is
         // specified in a static get observedAttributes method.
-        console.log(`Attribute: ${name} changed! -- "${newVal}"`)
+        console.log(`Attribute: ${name} changed! -- "${newVal}"`);
       }
     }
 
-    window.customElements.define("my-element", MyElement)
+    window.customElements.define("my-element", MyElement);
   </script>
 </html>

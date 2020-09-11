@@ -1,6 +1,6 @@
 // --------------------------------------------------------[ MyElement ]
-;(function () {
-  const template = document.createElement("template")
+(function () {
+  const template = document.createElement("template");
   template.innerHTML = `
       <style>
         :host {
@@ -11,38 +11,38 @@
       <div part="container">
         <slot name="my-slot">My default text</slot>
       </div>
-    `
+    `;
   class MyElement extends HTMLElement {
     constructor() {
       // always call super() first
-      super()
+      super();
 
-      this._shadowRoot = this.attachShadow({ mode: "open" })
-      this._shadowRoot.appendChild(template.content.cloneNode(true))
+      this._shadowRoot = this.attachShadow({ mode: "open" });
+      this._shadowRoot.appendChild(template.content.cloneNode(true));
 
-      console.log("constructed!")
+      console.log("constructed!");
     }
 
     connectedCallback() {
-      console.log("connected!")
+      console.log("connected!");
     }
 
     disconnectedCallback() {
-      console.log("disconnected!")
+      console.log("disconnected!");
     }
 
     adoptedCallback() {
-      console.log("adopted!")
+      console.log("adopted!");
     }
 
     static get observedAttributes() {
-      return ["my-attr"]
+      return ["my-attr"];
     }
 
     attributeChangedCallback(name, oldVal, newVal) {
-      console.log(`Attribute: ${name} changed! -- "${newVal}"`)
+      console.log(`Attribute: ${name} changed! -- "${newVal}"`);
     }
   }
 
-  window.customElements.define("my-element", MyElement)
-})()
+  window.customElements.define("my-element", MyElement);
+})();
